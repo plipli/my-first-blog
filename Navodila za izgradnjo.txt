@@ -1,0 +1,72 @@
+python manage.py runserver
+
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/admin
+
+** Ko si na PythonAnywhere, ni potrebno poganjati strežnika.
+http://adobro.pythonanywhere.com/
+
+Delo z bazo:
+============
+python manage.py shell
+
+--- Izpis vseh postov ----
+from blog.models import Post
+Post.objects.all()
+
+--- Kreiranje novega posta ----
+from django.contrib.auth.models import User
+User.objects.all()
+me = User.objects.get(username='admin')
+Post.objects.create(author=me, title='Sample title', text='Test')
+
+--- Filtriranje postov ---
+Post.objects.filter(author=me)
+Post.objects.filter(title__contains='slo')
+
+from django.utils import timezone
+Post.objects.filter(published_date__lte=timezone.now())
+post = Post.objects.get(title="Andrej")
+post.publish()
+
+--- Sortiranje ---
+Post.objects.order_by('created_date')
+Post.objects.order_by('-created_date')
+
+--- Chaining ---
+Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+
+V direktoriju djangogirls zaženi git
+====================================
+git status
+git add --all .
+git commit -m "Komentar spremembe."
+git push
+
+
+Na pythonanywhere (v direktoriju: adobro.pythonanywhere.com)
+============================================================
+git pulll
+
+
+Nameščene verzije
+=================
+pip install django==1.11
+
+python -V
+
+python3.6
+
+
+Kreiranje uporabnika in baze
+============================
+python3.6 manage.py migrate
+
+python3.6 manage.py createsuperuser
+
+21:12 ~/adobro.pythonanywhere.com (master)$ python3.6 manage.py createsuperuser                                                                                        
+Username (leave blank to use 'adobro'): 
+Email address: andrej.dobrovoljc@gmail.com
+Password: Aurora00
+Password (again): 
+Superuser created successfully.
