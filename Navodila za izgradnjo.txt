@@ -1,3 +1,7 @@
+Start (v djangogirls direktoriju)
+=================================
+myvenv\Scripts\activate
+
 python manage.py runserver
 
 http://127.0.0.1:8000/
@@ -51,12 +55,15 @@ git pulll
 
 Nameščene verzije
 =================
-pip install django==1.11
+pip install django==1.11        (lahko tudi tako: pip install django~=1.11.0)
 
 python -V
 
 python3.6
 
+Posodobitev programske opreme za nameščanje aplikacij
+=====================================================
+pip install --upgrade pip
 
 Kreiranje uporabnika in baze
 ============================
@@ -70,3 +77,11 @@ Email address: andrej.dobrovoljc@gmail.com
 Password: Aurora00
 Password (again): 
 Superuser created successfully.
+
+Kreiranje nove strani oz. novega projekta (v djangogirls direktoriju)
+=====================================================================
+django-admin.exe startproject mysite .            # pika pomeni, da kreiraš v tem direktoriju
+
+nastavitev datoteke mysite/settings.py            (datum in ure, povezava na bazo: sqlite3 ali MySQL, Postgres)
+
+python manage.py migrate                          # kreiranje baze na sqlite3
