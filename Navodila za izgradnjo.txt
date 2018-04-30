@@ -47,6 +47,9 @@ git add --all .
 git commit -m "Komentar spremembe."
 git push
 
+workon adobro.pythonanywhere.com
+python3.6 manage.py collectstatic
+
 
 Na pythonanywhere (v direktoriju: adobro.pythonanywhere.com)
 ============================================================
@@ -128,5 +131,17 @@ Tole je post_detail.html
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
+{% endblock %}
+
+Forme
+======
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>New post</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
 {% endblock %}
 
